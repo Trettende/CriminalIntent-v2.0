@@ -21,6 +21,16 @@
     </plurals>
 
     <string name="empty_list">No one crimes yet! Tap to + in toolbar to add first!</string>
-
+    <string name="crime_suspect_text">Choose Suspect</string>
+    <string name="crime_report_text">Send Crime Report</string>
+    <string name="crime_report">%1$s!
+        The crime was discovered on %2$s, %3$s. %4$s, and %5$s
+    </string>
+    <string name="crime_report_solved">The case is solved</string>
+    <string name="crime_report_unsolved">The case is not solved</string>
+    <string name="crime_report_no_suspect">there is no suspect.</string>
+    <string name="crime_report_suspect">the suspect is %s.</string>
+    <string name="crime_report_subject">CriminalIntent Crime Report</string>
+    <string name="send_report">Send crime report via</string>
 
 </resources>
