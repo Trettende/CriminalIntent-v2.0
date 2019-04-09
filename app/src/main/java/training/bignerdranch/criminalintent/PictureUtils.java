@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Point;
+import android.view.View;
 
 public class PictureUtils {
     public static Bitmap getScaledBitmap(String path, Activity activity) {
@@ -35,5 +36,9 @@ public class PictureUtils {
 
         // Чтение данных и создание итогового изображения
         return BitmapFactory.decodeFile(path, options);
+    }
+
+    public static Bitmap getScaledBitmap(String path, View container) {
+        return getScaledBitmap(path, container.getWidth(), container.getHeight());
     }
 }
