@@ -203,9 +203,9 @@ public class CrimeListFragment extends Fragment {
         public void bind(Crime crime) {
             mCrime = crime;
             mTitleTextView.setText(mCrime.getTitle());
-            String date = DateFormat.getDateInstance(DateFormat.FULL, Locale.ENGLISH)
+            String date = DateFormat.getDateInstance(DateFormat.FULL, Locale.getDefault())
                     .format(mCrime.getDate()) + ", " +
-                    DateFormat.getTimeInstance(DateFormat.LONG, Locale.ENGLISH)
+                    DateFormat.getTimeInstance(DateFormat.LONG, Locale.getDefault())
                             .format(mCrime.getTime());
             mDateTextView.setText(date);
             mSolvedImageView.setVisibility(crime.isSolved() ? View.VISIBLE : View.GONE);

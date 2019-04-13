@@ -329,12 +329,12 @@ public class CrimeFragment extends Fragment {
 
     private void updateDate() {
         //mDateButton.setText(mCrime.getDate().toString());
-        mDateButton.setText(DateFormat.getDateInstance(DateFormat.FULL, Locale.ENGLISH)
+        mDateButton.setText(DateFormat.getDateInstance(DateFormat.FULL, Locale.getDefault())
                 .format(mCrime.getDate()));
     }
 
     private void updateTime() {
-        mTimeButton.setText(DateFormat.getTimeInstance(DateFormat.LONG, Locale.ENGLISH)
+        mTimeButton.setText(DateFormat.getTimeInstance(DateFormat.LONG, Locale.getDefault())
                 .format(mCrime.getTime()));
     }
 
@@ -346,10 +346,10 @@ public class CrimeFragment extends Fragment {
             solvedString = getString(R.string.crime_report_unsolved);
         }
 
-        String dateString = DateFormat.getDateInstance(DateFormat.FULL, Locale.ENGLISH)
+        String dateString = DateFormat.getDateInstance(DateFormat.FULL, Locale.getDefault())
                 .format(mCrime.getDate());
 
-        String timeString = DateFormat.getTimeInstance(DateFormat.LONG, Locale.ENGLISH)
+        String timeString = DateFormat.getTimeInstance(DateFormat.LONG, Locale.getDefault())
                 .format(mCrime.getTime());
 
         String suspect = mCrime.getSuspect();
