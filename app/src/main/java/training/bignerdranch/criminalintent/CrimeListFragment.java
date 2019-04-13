@@ -9,6 +9,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -36,6 +37,7 @@ public class CrimeListFragment extends Fragment {
 
     public interface Callbacks {
         void onCrimeSelected(Crime crime);
+        void onCrimeRemoved(Crime crime);
     }
 
     @Override
@@ -62,6 +64,28 @@ public class CrimeListFragment extends Fragment {
         }
 
         mEmptyListTextView = view.findViewById(R.id.empty_list_view);
+
+        ItemTouchHelper touchHelper = new ItemTouchHelper(
+                new ItemTouchHelper.SimpleCallback(ItemTouchHelper.UP | ItemTouchHelper.DOWN,
+                        ItemTouchHelper.RIGHT | ItemTouchHelper.LEFT) {
+            @Override
+            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+                return false;
+            }
+
+            @Override
+            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+                final int pos = viewHolder.getAdapterPosition();
+                Crime crime = mAdapter.getCrimes().get(pos);
+                if (direction == ItemTouchHelper.RIGHT) {
+                    mCallbacks.onCrimeSelected(crime);
+                } else if (direction == ItemTouchHelper.LEFT) {
+                    mCallbacks.onCrimeRemoved(crime);
+                    updateUI();
+                }
+            }
+        });
+        touchHelper.attachToRecyclerView(mCrimeRecyclerView);
 
         updateUI();
 
@@ -231,6 +255,10 @@ public class CrimeListFragment extends Fragment {
             } else {
                 return R.layout.list_item_crime;
             }
+        }
+
+        public List<Crime> getCrimes() {
+            return mCrimes;
         }
     }
 }
